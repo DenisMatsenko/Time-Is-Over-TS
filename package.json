@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-
   "compilerOptions": {
     "module": "CommonJS"
   },
@@ -24,6 +23,8 @@
   "homepage": "https://github.com/DenisMatsenko/Time-Is-Over-TS#readme",
   "dependencies": {
     "discord.js": "^14.7.1",
-    "typescript": "^4.9.4"
+    "mongodb": "4.13",
+    "typescript": "^4.9.4",
+    "uuid": "^9.0.0"
   }
 }

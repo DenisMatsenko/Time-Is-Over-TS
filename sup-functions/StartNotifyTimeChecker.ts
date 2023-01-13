@@ -1,13 +1,15 @@
 import DiscordJS, {Client, EmbedBuilder} from 'discord.js'
-
-const Hour_for_notify = 7
+import { hourForNotify } from '../settings/settings'
+import SendTestListToChannel from './SendTestListToChannel'
+//import SendTestListToChannel from './SendTestListToChannel'
 
 export default async function StartNotifyTimeChecker(client: Client) {
     setInterval(() => {
-        if(new Date().getHours() == Hour_for_notify) StartSendNotify()
+        if(new Date().getHours() == hourForNotify) StartSendNotify(client)
     }, 1000)
 }
 
-const StartSendNotify = () => {
-    //console.log("here")
+const StartSendNotify = (client: Client) => {
+    SendTestListToChannel(client)
+    //DeleteOldTests()
 }

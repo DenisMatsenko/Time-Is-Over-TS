@@ -1,5 +1,6 @@
 import DiscordJS, { ActivityFlags, SlashCommandBuilder, InteractionType ,  GatewayIntentBits, EmbedBuilder, PermissionsBitField, MessageActivityType, CommandInteraction  } from 'discord.js'
 import { token } from './settings/settings'
+import SlashAddTest from './slash-functions/AddTest'
 import AddCommandsToBot from './sup-functions/AddCommandsToBot'
 import StartNotifyTimeChecker from './sup-functions/StartNotifyTimeChecker'
 
@@ -44,19 +45,18 @@ client.on('ready', (client) => {
     console.log('Time is over is ready!!!')
 }) 
 
-// client.on('interactionCreate', async (interaction) => {
-//     let { commandName, options } = interaction as CommandInteraction
+client.on('interactionCreate', async (interaction) => {
+    let { commandName, options } = interaction as CommandInteraction
 
-//     // if(interaction.guild !== null) {
+
         
-//     //     if(commandName === "help") { SlashHelp(interaction, options, client)}
+    //     if(commandName === "help") { SlashHelp(interaction, options, client)}
 
-//     //     if(commandName === "add-test") { SlashAddTest(interaction, options, client)}
+         if(commandName === "add-test") { SlashAddTest(interaction, options)}
 
-//     //     if(commandName === "show-all-tests") {console.log("gg"); SlashShowAllTests(interaction, options, client)}
+    //     if(commandName === "show-all-tests") {console.log("gg"); SlashShowAllTests(interaction, options, client)}
 
-//     } 
-//     //else CommOnlyServsWarning()
-// })
+
+})
 
 client.login(token)
