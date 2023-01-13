@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { ITest } from "./settings/settings";
+import { IReminder } from "./settings/settings";
 // Replace the uri string with your connection string.
 const uri = "mongodb+srv://FirstDBUser:Dm2016dM@cluster0.oi18chy.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
@@ -28,27 +28,25 @@ export async function runDB() {
   }
 }
 
-export async function AddTestToDataBase(test: ITest) {
+export async function AddReminderToDataBase(test: IReminder) {
     try {
       const database = client.db('SchoolReminder');
       const collection = database.collection('reminders');
       collection.insertOne(test)
 
     } finally {
-      await client.close();
       console.log("Test-reminder successfully created!")
     }
 }
 
-export async function GetAllTestsFromDataBase() {
+export async function GetAllRemindersFromDataBase() {
     try {
         const database = client.db('SchoolReminder');
         const collection = database.collection('reminders');
       
-        return await collection.find().toArray() as ITest[];
+        return await collection.find().toArray() as IReminder[];
  
     } finally {
-        await client.close();
         console.log("All tests successfully geted!")
     }
 }
