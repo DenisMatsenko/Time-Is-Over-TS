@@ -1,6 +1,8 @@
 import DiscordJS, { ActivityFlags, SlashCommandBuilder, InteractionType ,  GatewayIntentBits, EmbedBuilder, PermissionsBitField, MessageActivityType, CommandInteraction  } from 'discord.js'
+import { GetAllTestsFromDataBase } from './MongoDataBase'
 import { token } from './settings/settings'
-import SlashAddTest from './slash-functions/AddTest'
+import Slash_AddTest from './slash-functions/AddTest'
+import Slash_ShowAllTests from './slash-functions/ShowAllTests'
 import AddCommandsToBot from './sup-functions/AddCommandsToBot'
 import StartNotifyTimeChecker from './sup-functions/StartNotifyTimeChecker'
 
@@ -48,15 +50,9 @@ client.on('ready', (client) => {
 client.on('interactionCreate', async (interaction) => {
     let { commandName, options } = interaction as CommandInteraction
 
-
-        
-    //     if(commandName === "help") { SlashHelp(interaction, options, client)}
-
-         if(commandName === "add-test") { SlashAddTest(interaction, options)}
-
-    //     if(commandName === "show-all-tests") {console.log("gg"); SlashShowAllTests(interaction, options, client)}
-
-
+    //if(commandName === "help") { SlashHelp(interaction, options, client)}
+    if(commandName === "add-test") { Slash_AddTest(interaction, options)}
+    if(commandName === "show-all-tests") { Slash_ShowAllTests(interaction)}
 })
 
 client.login(token)

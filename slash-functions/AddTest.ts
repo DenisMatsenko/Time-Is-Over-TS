@@ -1,21 +1,21 @@
 import DiscordJS, { ActionRowBuilder, ButtonBuilder,  ButtonStyle, ActivityFlags, SlashCommandBuilder,  GatewayIntentBits, EmbedBuilder, PermissionsBitField, Interaction, Options, CommandInteraction } from 'discord.js'
 import { AddTestToDataBase } from '../MongoDataBase';
-import { Test } from '../settings/settings';
+import { color, ITest } from '../settings/settings';
 
-export default async function SlashAddTest(interaction: any, options: any)  {
+export default async function Slash_AddTest(interaction: any, options: any)  {
     const testSubject: string = options.getString('test-subject')
     const testDate   : string = options.getString('test-date')
     const testTopic  : string = options.getString('test-topic')
     const testLinks  : string = options.getString('test-links')
 
 
-    let test: Test = {
+    let test: ITest = {
         test_subject: testSubject,
         test_date: testDate,
         test_topic: testTopic,
         test_links: testLinks,
         created_by_id: interaction.user.id,
-        created_bu_name: interaction.user.username,
+        created_by_name: interaction.user.username,
     }
 
     AddTestToDataBase(test)
@@ -25,7 +25,7 @@ export default async function SlashAddTest(interaction: any, options: any)  {
     // })
     
     let Embed = new EmbedBuilder()
-    //.setColor(blue)
+    .setColor(color.blue)
     .setTitle('Test-reminder successfully created!')
     .setTimestamp()
     interaction.reply({  embeds: [Embed] })
