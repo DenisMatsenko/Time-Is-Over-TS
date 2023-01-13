@@ -1,6 +1,7 @@
 import DiscordJS, { ActivityFlags, SlashCommandBuilder, InteractionType ,  GatewayIntentBits, EmbedBuilder, PermissionsBitField, MessageActivityType, CommandInteraction  } from 'discord.js'
 import { token } from './settings/settings'
 import AddCommandsToBot from './sup-functions/AddCommandsToBot'
+import StartNotifyTimeChecker from './sup-functions/StartNotifyTimeChecker'
 
 // import BotTurnedOnMsg from './functions/sup-functions/BotTurnedOnMsg.js'
 // import SlashHelp from './functions/slash/slash-help.js'
@@ -38,6 +39,7 @@ const client = new DiscordJS.Client({
 
 client.on('ready', (client) => {
     AddCommandsToBot(client.application?.commands)
+    StartNotifyTimeChecker(client)
 
     console.log('Time is over is ready!!!')
 }) 
