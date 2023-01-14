@@ -1,6 +1,5 @@
 import { MongoClient } from "mongodb";
 import { IReminder } from "./settings/settings";
-// Replace the uri string with your connection string.
 const uri = "mongodb+srv://FirstDBUser:Dm2016dM@cluster0.oi18chy.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 

@@ -25,7 +25,7 @@ import StartNotifyTimeChecker from './sup-functions/StartNotifyTimeChecker'
 // import { runDB } from './mongo.js'
 
 ////////
-//доробити хелп, 
+//add deleter for reminders, clean code, switch interaction, hide mongo connection uri
 
 
 const client = new DiscordJS.Client({
