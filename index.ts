@@ -24,6 +24,9 @@ import StartNotifyTimeChecker from './sup-functions/StartNotifyTimeChecker'
 // import DeleteOldTests from './functions/sup-functions/DeleteOldTests.js'
 // import { runDB } from './mongo.js'
 
+////////
+//доробити хелп, 
+
 
 const client = new DiscordJS.Client({
     intents: [

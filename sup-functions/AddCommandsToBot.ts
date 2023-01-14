@@ -19,6 +19,26 @@ export default async function AddCommandsToBot(client: Client)  {
         description: "Create test & homework reminder.",
         options: [
             {
+                name: 'reminder-type',
+                description: 'test, homework or action',
+                required: true,
+                type: DiscordJS.ApplicationCommandOptionType.String,
+                choices: [
+                    {
+                        name: "Test",
+                        value: "Test"
+                    },
+                    {
+                        name: "Homework",
+                        value: "Homework"
+                    },
+                    {
+                        name: "Action",
+                        value: "Action"
+                    },
+                ]
+            },
+            {
                 name: 'reminder-subject',
                 description: 'reminder subject name',
                 required: true,

@@ -7,8 +7,8 @@ export default async function Slash_Help(interaction: any)  {
     .setColor(color.blue)
     .setTitle('Bot commands!')
     .setDescription(
-        '**/add-test** - Add test to test list.\n' + 
-        '**/show-all-tests** - Write list of tests.\n'
+        '**/add-reminder** - Add reminder to reminder list.\n' + 
+        '**/show-all-reminders** - Write list of reminders to chat.\n'
     )
     .setTimestamp()
 

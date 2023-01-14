@@ -8,9 +8,11 @@ export default async function Slash_AddReminder(interaction: any, options: any) 
     const reminderTopic  : string = options.getString('reminder-topic')
     const reminderLinks  : string = options.getString('reminder-links')
     const reminderGroup  : string = options.getString('reminder-group')
+    const reminderType  : string = options.getString('reminder-type')
 
 
     let reminder: IReminder = {
+        reminder_type: reminderType, 
         reminder_subject: reminderSubject,
         reminder_group: reminderGroup,
         reminder_date: reminderDate,
