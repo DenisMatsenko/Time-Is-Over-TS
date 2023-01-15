@@ -11,7 +11,7 @@ export default async function Slash_AddReminder(interaction: any, options: any) 
     const reminderType      : string = options.getString('reminder-type')
 
     //create new reminder obj
-    let reminder: IReminder = {
+    const reminder: IReminder = {
         reminder_type: reminderType, 
         reminder_subject: reminderSubject,
         reminder_group: reminderGroup,

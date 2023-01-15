@@ -1,15 +1,10 @@
-import DiscordJS, { ActivityFlags, SlashCommandBuilder, InteractionType ,  GatewayIntentBits, EmbedBuilder, PermissionsBitField, MessageActivityType, CommandInteraction, verifyString, TextChannel  } from 'discord.js'
-import { channelID, guildID, token } from './settings/settings'
-//import { guildID, token } from './settings/settings'
+import DiscordJS, { GatewayIntentBits, CommandInteraction } from 'discord.js'
+import { token } from './settings/settings'
 import Slash_AddReminder from './slash-functions/AddTest'
 import Slash_Help from './slash-functions/Help'
 import AddCommandsToBot from './sup-functions/AddCommandsToBot'
 import SendTestListToChannel from './sup-functions/SendTestListToChannel'
 import StartEventTimeChecker from './sup-functions/StartNotifyTimeChecker'
-
-
-//////// clean code
-
 
 export const client = new DiscordJS.Client({
     intents: [

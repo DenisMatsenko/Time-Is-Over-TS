@@ -1,6 +1,6 @@
-import DiscordJS, { ActionRowBuilder, ButtonBuilder,  ButtonStyle, ActivityFlags, SlashCommandBuilder,  GatewayIntentBits, EmbedBuilder, PermissionsBitField, Client, TextChannel, CommandInteraction } from 'discord.js'
+import { EmbedBuilder, Client, TextChannel, CommandInteraction } from 'discord.js'
 import { GetAllRemindersFromDataBase } from '../MongoDataBase'
-import { channelID, color, dayOfWeek, guildID, IReminder } from '../settings/settings'
+import { channelID, color, dayOfWeek, IReminder } from '../settings/settings'
 
 export default async function SendTestListToChannel(client: Client, interaction?: CommandInteraction)  {
 
@@ -11,13 +11,13 @@ export default async function SendTestListToChannel(client: Client, interaction?
     interaction != null ? interaction.reply({  embeds: [Embed] }) : GetDefaultChannel(client).send({  embeds: [Embed] })
 
     //get reminders list
-    const notifies = await GetAllRemindersFromDataBase()
+    const reminders = await GetAllRemindersFromDataBase()
     
     //sort reminders list by date
-    notifies.sort((a, b) => parseFloat(a.reminder_date.split('.')[0]) - parseFloat(b.reminder_date.split('.')[0]))
+    reminders.sort((a, b) => parseFloat(a.reminder_date.split('.')[0]) - parseFloat(b.reminder_date.split('.')[0]))
 
     //send all reminders to chat
-    notifies.forEach(reminder => {
+    reminders.forEach(reminder => {
             let Embed = new EmbedBuilder()
             .setColor(GetColor(reminder))
             .setTitle(`${reminder.reminder_subject} - ${GetDayOfWeek(reminder)} ( ${reminder.reminder_date} )  G- ${reminder.reminder_group}`)

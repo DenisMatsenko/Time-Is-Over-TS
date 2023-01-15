@@ -1,10 +1,10 @@
 import { GetQueryRemindersFromDataBase, RemoveReminderFromDataBase } from "../MongoDataBase";
-var format = require('date-format');
+const format = require('date-format');
 
 export default async function DelteteOldReminders() {
-    const notifies = await GetQueryRemindersFromDataBase({ reminder_date: GetYesterdayDate() })
+    const reminders = await GetQueryRemindersFromDataBase({ reminder_date: GetYesterdayDate() })
 
-    notifies.forEach(reminder => {
+    reminders.forEach(reminder => {
         RemoveReminderFromDataBase(reminder)
     });
 }

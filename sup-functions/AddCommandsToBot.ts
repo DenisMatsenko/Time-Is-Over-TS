@@ -3,7 +3,6 @@ import { guildID } from '../settings/settings'
 
 export default async function AddCommandsToBot(client: Client)  {
     const commands = client.guilds.cache.get(guildID)?.commands
-
     commands?.create({
         name: 'help',
         description: "show all bot commands.",
