@@ -5,7 +5,7 @@ import Slash_AddReminder from './slash-functions/AddTest'
 import Slash_Help from './slash-functions/Help'
 import Slash_ShowAllreminders from './slash-functions/ShowAllTests'
 import AddCommandsToBot from './sup-functions/AddCommandsToBot'
-import StartNotifyTimeChecker from './sup-functions/StartNotifyTimeChecker'
+import StartEventTimeChecker from './sup-functions/StartNotifyTimeChecker'
 
 // import BotTurnedOnMsg from './functions/sup-functions/BotTurnedOnMsg.js'
 // import SlashHelp from './functions/slash/slash-help.js'
@@ -46,7 +46,7 @@ const client = new DiscordJS.Client({
 
 client.on('ready', (client) => {
     AddCommandsToBot(client)
-    StartNotifyTimeChecker(client)
+    StartEventTimeChecker(client)
 
     console.log('Time is over is ready!!!')
 }) 

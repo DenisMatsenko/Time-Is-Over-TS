@@ -4,7 +4,7 @@ import DelteteOldReminders from './DeleteOldReminders'
 import SendTestListToChannel from './SendTestListToChannel'
 //import SendTestListToChannel from './SendTestListToChannel'
 
-export default async function StartNotifyTimeChecker(client: Client) {
+export default async function StartEventTimeChecker(client: Client) {
     setInterval(() => {
         if(new Date().getHours() == hourForNotify) StartSendNotify(client)
     }, 2000)
