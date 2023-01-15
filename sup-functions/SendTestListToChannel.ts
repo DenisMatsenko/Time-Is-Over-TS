@@ -1,34 +1,41 @@
-import DiscordJS, { ActionRowBuilder, ButtonBuilder,  ButtonStyle, ActivityFlags, SlashCommandBuilder,  GatewayIntentBits, EmbedBuilder, PermissionsBitField, Client } from 'discord.js'
+import DiscordJS, { ActionRowBuilder, ButtonBuilder,  ButtonStyle, ActivityFlags, SlashCommandBuilder,  GatewayIntentBits, EmbedBuilder, PermissionsBitField, Client, TextChannel, CommandInteraction } from 'discord.js'
+import { GetAllRemindersFromDataBase } from '../MongoDataBase'
+import { channelID, color, dayOfWeek, guildID, IReminder } from '../settings/settings'
 
-const Day = [
-    "Today",
-    "Tomorrow",
-    "In 2 days",
-    "In 3 days",
-    "In 4 days",
-    "In 5 days",
-    "In 6 days",
-]
+export default async function SendTestListToChannel(client: Client, interaction?: CommandInteraction)  {
 
-export default async function SendTestListToChannel(client: Client)  {
+    //send title of list
+    let Embed = new EmbedBuilder()
+    .setColor(color.white)
+    .setTitle(`All reminders:`)
+    interaction != null ? interaction.reply({  embeds: [Embed] }) : GetDefaultChannel(client).send({  embeds: [Embed] })
 
-
+    //get reminders list
+    const notifies = await GetAllRemindersFromDataBase()
     
-            // //new
-            // for (let i = 0; i <= 7; i++) {
-            //     for (let y = 0; y < Object.keys(data).length; y++) {
+    //sort reminders list by date
+    notifies.sort((a, b) => parseFloat(a.reminder_date.split('.')[0]) - parseFloat(b.reminder_date.split('.')[0]))
 
-            //         let testData = Object.entries(data)[y][1]
-
-            //         if(parseInt(testData['test-date'].split('.')[0]) == new Date().getDate() + i) {
-            //             let Embed = new EmbedBuilder()
-            //             .setColor("#db2121")
-            //             .setTitle(`${Day[i]} - ${testData['test-subject']}`)
-            //             .setDescription(`${testData['test-topic']}. Created by <@${testData['created-by-id']}>`)
-            //             //client.channels.cache.get('1006001494530736229').send({  embeds: [Embed] });
-            //             client.guilds.cache.get(settings.ServerID).channels.cache.get(settings.ChannelID).send({ embeds: [Embed] })
-            //         }
-            //     }
-            // }
-            
+    //send all reminders to chat
+    notifies.forEach(reminder => {
+            let Embed = new EmbedBuilder()
+            .setColor(GetColor(reminder))
+            .setTitle(`${reminder.reminder_subject} - ${GetDayOfWeek(reminder)} ( ${reminder.reminder_date} )  G- ${reminder.reminder_group}`)
+            .setDescription(`${reminder.reminder_topic}. \n\nCreated by <@${reminder.created_by_id}>`)
+            interaction != null ? interaction.channel?.send({  embeds: [Embed] }) : GetDefaultChannel(client).send({  embeds: [Embed] })     
+    })
 }
+
+const GetColor = (reminder: IReminder) => {
+    if(reminder.reminder_type === "Test") return        color.red
+    if(reminder.reminder_type === "Homework") return    color.orange
+    if(reminder.reminder_type === "Action") return      color.green
+    return null
+}
+
+const GetDayOfWeek = (reminder: IReminder) =>
+    dayOfWeek[new Date(`${new Date().getFullYear()}-${reminder.reminder_date.split('.')[1]}-${reminder.reminder_date.split('.')[0]}`).getDay()]
+
+
+const GetDefaultChannel = (client: Client) => 
+    client.channels.cache.get(channelID) as TextChannel
