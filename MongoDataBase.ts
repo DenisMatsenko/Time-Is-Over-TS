@@ -1,7 +1,9 @@
 import { MongoClient } from "mongodb";
-import { IReminder } from "./settings/settings";
-const uri = "mongodb+srv://FirstDBUser:Dm2016dM@cluster0.oi18chy.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri);
+import { IReminder, mongoDBCollectionName, mongoDBName, mongoDBUri } from "./settings/settings";
+
+const client = new MongoClient(mongoDBUri);
+const database = client.db(mongoDBName);
+const collection = database.collection(mongoDBCollectionName);
 
 export async function runDB() {
   try {
@@ -28,24 +30,11 @@ export async function runDB() {
 }
 
 export async function AddReminderToDataBase(test: IReminder) {
-    try {
-      const database = client.db('SchoolReminder');
-      const collection = database.collection('reminders');
-      collection.insertOne(test)
-
-    } finally {
-      console.log("Test-reminder successfully created!")
-    }
+    try {collection.insertOne(test)} 
+    finally {console.log("Test-reminder successfully created!")}
 }
 
 export async function GetAllRemindersFromDataBase() {
-    try {
-        const database = client.db('SchoolReminder');
-        const collection = database.collection('reminders');
-      
-        return await collection.find().toArray() as IReminder[];
- 
-    } finally {
-        console.log("All tests successfully geted!")
-    }
+    try {return await collection.find().toArray() as IReminder[]} 
+    finally {console.log("All tests successfully geted!")}
 }

@@ -1,10 +1,9 @@
-import DiscordJS, { ActivityFlags, SlashCommandBuilder, InteractionType ,  GatewayIntentBits, EmbedBuilder, PermissionsBitField, MessageActivityType, CommandInteraction  } from 'discord.js'
-import { guildID, token } from './settings/settings'
+import DiscordJS, { ActivityFlags, SlashCommandBuilder, InteractionType ,  GatewayIntentBits, EmbedBuilder, PermissionsBitField, MessageActivityType, CommandInteraction, verifyString  } from 'discord.js'
+import { token } from './settings/settings'
+//import { guildID, token } from './settings/settings'
 import Slash_AddReminder from './slash-functions/AddTest'
-import Slash_AddTest from './slash-functions/AddTest'
 import Slash_Help from './slash-functions/Help'
 import Slash_ShowAllreminders from './slash-functions/ShowAllTests'
-import Slash_ShowAllTests from './slash-functions/ShowAllTests'
 import AddCommandsToBot from './sup-functions/AddCommandsToBot'
 import StartNotifyTimeChecker from './sup-functions/StartNotifyTimeChecker'
 
@@ -25,7 +24,7 @@ import StartNotifyTimeChecker from './sup-functions/StartNotifyTimeChecker'
 // import { runDB } from './mongo.js'
 
 ////////
-//add deleter for reminders, clean code, switch interaction, hide mongo connection uri
+//add deleter for reminders, clean code
 
 
 const client = new DiscordJS.Client({
@@ -47,31 +46,18 @@ const client = new DiscordJS.Client({
 
 
 client.on('ready', (client) => {
-    //AddCommandsToBot(client.application?.commands)
     AddCommandsToBot(client)
     StartNotifyTimeChecker(client)
 
     console.log('Time is over is ready!!!')
-
-
-    //client.application.commands.set([])
-
-
-        // client.application.commands
-        // .then( (command) => {
-        // console.log(`Fetched command ${command.name}`)
-        // // further delete it like so:
-        // command.delete()
-        // console.log(`Deleted command ${command.name}`)
-        // }).catch(console.error);
 }) 
 
 client.on('interactionCreate', async (interaction) => {
-    let { commandName, options } = interaction as CommandInteraction
+    const { commandName, options } = interaction as CommandInteraction
 
-    if(commandName === "help") { Slash_Help(interaction)}
-    if(commandName === "add-reminder") { Slash_AddReminder(interaction, options)}
-    if(commandName === "show-all-reminders") { Slash_ShowAllreminders(interaction)}
+    if(commandName === "help")                  Slash_Help(interaction)
+    if(commandName === "add-reminder")          Slash_AddReminder(interaction, options)
+    if(commandName === "show-all-reminders")    Slash_ShowAllreminders(interaction)
 })
 
 client.login(token)
