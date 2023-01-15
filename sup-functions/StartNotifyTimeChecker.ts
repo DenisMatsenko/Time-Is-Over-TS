@@ -1,11 +1,15 @@
 import { Client } from 'discord.js'
 import { hourForNotify } from '../settings/settings'
+import ClearChannel from './ClearChannel'
 import DelteteOldReminders from './DeleteOldReminders'
 import SendTestListToChannel from './SendTestListToChannel'
 
 export default async function StartEventTimeChecker(client: Client) {
-    setInterval(() => {
-        if(new Date().getHours() == hourForNotify) StartSendNotify(client)
+    setInterval( async () => {
+        if(new Date().getHours() == hourForNotify) {
+            await ClearChannel(client)
+            StartSendNotify(client)
+        } 
     }, 1800000)
 }
 
