@@ -23,8 +23,7 @@ import StartNotifyTimeChecker from './sup-functions/StartNotifyTimeChecker'
 // import DeleteOldTests from './functions/sup-functions/DeleteOldTests.js'
 // import { runDB } from './mongo.js'
 
-////////
-//add deleter for reminders, clean code
+//////// clean code, finis everyday notify
 
 
 const client = new DiscordJS.Client({

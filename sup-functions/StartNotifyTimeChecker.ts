@@ -7,7 +7,7 @@ import SendTestListToChannel from './SendTestListToChannel'
 export default async function StartNotifyTimeChecker(client: Client) {
     setInterval(() => {
         if(new Date().getHours() == hourForNotify) StartSendNotify(client)
-    }, 1000)
+    }, 2000)
 }
 
 const StartSendNotify = async (client: Client) => {

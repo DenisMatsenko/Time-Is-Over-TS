@@ -103,3 +103,4 @@ dist
 # TernJS port file
 .tern-port
 settings/settings.ts
+test.ts

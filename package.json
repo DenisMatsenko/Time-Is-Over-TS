@@ -7,8 +7,8 @@
     "module": "CommonJS"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.ts"
+    "start": "nodemon index.ts",
+    "test": "node test.ts"
   },
   "repository": {
     "type": "git",
@@ -22,9 +22,13 @@
   },
   "homepage": "https://github.com/DenisMatsenko/Time-Is-Over-TS#readme",
   "dependencies": {
+    "date-format": "^4.0.14",
     "discord.js": "^14.7.1",
     "mongodb": "4.13",
     "typescript": "^4.9.4",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/dateformat": "^5.0.0"
   }
 }
