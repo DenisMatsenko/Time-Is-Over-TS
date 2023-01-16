@@ -1,4 +1,4 @@
-import DiscordJS, { Client } from 'discord.js'
+import { ApplicationCommandOptionType, Client } from 'discord.js'
 import { guildID } from '../settings/settings'
 
 export default async function AddCommandsToBot(client: Client)  {
@@ -21,7 +21,7 @@ export default async function AddCommandsToBot(client: Client)  {
                 name: 'reminder-type',
                 description: 'test, homework or action',
                 required: true,
-                type: DiscordJS.ApplicationCommandOptionType.String,
+                type: ApplicationCommandOptionType.String,
                 choices: [
                     {
                         name: "Test",
@@ -41,25 +41,25 @@ export default async function AddCommandsToBot(client: Client)  {
                 name: 'reminder-subject',
                 description: 'reminder subject name',
                 required: true,
-                type: DiscordJS.ApplicationCommandOptionType.String
+                type: ApplicationCommandOptionType.String
             },
             {
                 name: 'reminder-date',
                 description: 'date in the format: 01.01',
                 required: true,
-                type: DiscordJS.ApplicationCommandOptionType.String
+                type: ApplicationCommandOptionType.String
             },
             {
                 name: 'reminder-topic',
                 description: 'reminder topic...',
                 required: true,
-                type: DiscordJS.ApplicationCommandOptionType.String
+                type: ApplicationCommandOptionType.String
             },
             {
                 name: 'reminder-group',
                 description: 'All, 1, 2',
                 required: true,
-                type: DiscordJS.ApplicationCommandOptionType.String,
+                type: ApplicationCommandOptionType.String,
                 choices: [
                     {
                         name: "All",
@@ -79,7 +79,7 @@ export default async function AddCommandsToBot(client: Client)  {
                 name: 'reminder-links',
                 description: 'links to docs / photos / discord messages',
                 required: false,
-                type: DiscordJS.ApplicationCommandOptionType.String
+                type: ApplicationCommandOptionType.String
             },
         ],
     })

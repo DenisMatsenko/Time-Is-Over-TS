@@ -2,13 +2,17 @@
   "name": "time-is-over-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
+  "type": "module",
   "compilerOptions": {
-    "module": "CommonJS"
+    "module": "module"
   },
   "scripts": {
-    "start": "nodemon index.ts",
-    "test": "node test.ts"
+    "dev": "nodemon index.ts",
+    "start": "node ./dist/index.js ",
+    "test": "node test.ts",
+    "build": "tsc --build",
+    "prod": "npm run build && node ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@types/dateformat": "^5.0.0"
+    "@types/dateformat": "^5.0.0",
+    "ts-node": "^10.9.1"
   }
 }

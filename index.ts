@@ -1,4 +1,4 @@
-import DiscordJS, { GatewayIntentBits, CommandInteraction } from 'discord.js'
+import { Client, GatewayIntentBits, CommandInteraction } from 'discord.js'
 import { token } from './settings/settings'
 import Slash_AddReminder from './slash-functions/AddTest'
 import Slash_Help from './slash-functions/Help'
@@ -6,7 +6,7 @@ import AddCommandsToBot from './sup-functions/AddCommandsToBot'
 import SendTestListToChannel from './sup-functions/SendTestListToChannel'
 import StartEventTimeChecker from './sup-functions/StartNotifyTimeChecker'
 
-export const client = new DiscordJS.Client({
+export const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
