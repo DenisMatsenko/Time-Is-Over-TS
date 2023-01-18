@@ -40,6 +40,4 @@ const GetDayOfWeek = (reminder: IReminder) =>
 const GetDefaultChannel = (client: Client) => 
     client.channels.cache.get(channelID) as TextChannel
 
-const GetDateValueForSort = (reminder_date: string) => {
-    return parseFloat(reminder_date.split('.')[0]) + 30 * parseFloat(reminder_date.split('.')[1])
-}
+const GetDateValueForSort = (reminder_date: string) => parseFloat(reminder_date.split('.')[0]) + 30 * parseFloat(reminder_date.split('.')[1])
