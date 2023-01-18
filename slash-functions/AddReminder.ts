@@ -1,8 +1,11 @@
-import { EmbedBuilder } from 'discord.js'
+import { Client, EmbedBuilder } from 'discord.js'
 import { AddReminderToDataBase } from '../MongoDataBase';
 import { color, IReminder } from '../settings/settings';
+import ClearChannel from '../sup-functions/ClearChannel';
+import DelteteOldReminders from '../sup-functions/DeleteOldReminders';
+import SendTestListToChannel from '../sup-functions/SendTestListToChannel';
 
-export default async function Slash_AddReminder(interaction: any, options: any)  {
+export default async function Slash_AddReminder(client: Client, interaction: any, options: any)  {
     const reminderSubject   : string = options.getString('reminder-subject')
     const reminderDate      : string = options.getString('reminder-date')
     const reminderTopic     : string = options.getString('reminder-topic')
@@ -22,7 +25,11 @@ export default async function Slash_AddReminder(interaction: any, options: any) 
         created_by_name: interaction.user.username,
     }
 
-    AddReminderToDataBase(reminder)
+    AddReminderToDataBase(reminder).then(async () => {
+        await ClearChannel(client)
+        await DelteteOldReminders()
+        await SendTestListToChannel(client)
+    })
     
     let Embed = new EmbedBuilder()
     .setColor(color.blue)

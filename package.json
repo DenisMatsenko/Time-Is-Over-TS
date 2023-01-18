@@ -8,9 +8,9 @@
     "module": "module"
   },
   "scripts": {
-    "dev": "nodemon index.ts",
-    "start": "node ./dist/index.js ",
-    "test": "node test.ts",
+    "dev": "nodemon ./dist/index.js",
+    "start": "node ./dist/index.js",
+    "test": "nodemon index.js",
     "build": "tsc --build",
     "prod": "npm run build && node ./dist/index.js"
   },
