@@ -14,7 +14,7 @@ export default async function SendTestListToChannel(client: Client, interaction?
     const reminders = await GetAllRemindersFromDataBase()
     
     //sort reminders list by date
-    reminders.sort((a, b) => parseFloat(a.reminder_date.split('.')[0]) - parseFloat(b.reminder_date.split('.')[0]))
+    reminders.sort((a, b) => GetDateValueForSort(a.reminder_date) - GetDateValueForSort(b.reminder_date))
 
     //send all reminders to chat
     reminders.forEach(reminder => {
@@ -39,3 +39,7 @@ const GetDayOfWeek = (reminder: IReminder) =>
 
 const GetDefaultChannel = (client: Client) => 
     client.channels.cache.get(channelID) as TextChannel
+
+const GetDateValueForSort = (reminder_date: string) => {
+    return parseFloat(reminder_date.split('.')[0]) + 30 * parseFloat(reminder_date.split('.')[1])
+}
